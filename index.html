@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Más allá de las nubes</title>
+  <style>
+    @font-face {
+      font-family: MrDafoe;
+      src: url( "fonts/MrDafoe-Regular.ttf");
+    }
+    @font-face {
+      font-family: Kaushan;
+      src: url( "fonts/KaushanScript-Regular.ttf");
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      line-height: 1.6;
+      color: #2c3e50;
+      background: linear-gradient(135deg, #f23d4c 0%, #a82425 100%);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .book-cover-wrapper {
+      display: flex;
+      justify-content: center;
+      perspective: 1000px;
+    }
+
+    .book-cover {
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .book-cover:hover {
+      transform: translateY(-10px) rotateY(-5deg);
+    }
+
+    .hero-text {
+      color: white;
+    }
+
+    .hero-text h1 {
+      font-family: "MrDafoe";
+      font-size: 3.5em;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero-text .subtitle {
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      opacity: 0.95;
+      font-family: 'ui-sans-serif', sans-serif;
+    }
+
+    .email-form {
+      font-family: Georgia;
+      background: rgba(255,255,255,0.95);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin-top: 40px;
+    }
+
+    .email-form h3 {
+      color: #667eea;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #f23d4c 0%, #a82425 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Content Sections */
+    .section {
+      background: white;
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 50px;
+      color: #2c3e50;
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1em;
+      line-height: 1.8;
+    }
+
+    .about-content p {
+      margin-bottom: 20px;
+    }
+
+    /* Author Section */
+    .author-section {
+      background: #f8f9fa;
+    }
+
+    .author-content {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 50px;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .author-photo {
+      width: 100%;
+      border-radius: 50%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .author-bio h3 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #667eea;
+    }
+
+    .author-bio p {
+      font-size: 1.1em;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .testimonial {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 12px;
+      border-left: 4px solid #667eea;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .testimonial-author {
+      font-weight: bold;
+      color: #667eea;
+    }
+
+    /* Details Section */
+    .details {
+      background: linear-gradient(135deg, #f23d4c 0%, #a82425 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .detail-item h4 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    /* Footer */
+    footer {
+      background: #2c3e50;
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .social-links {
+      margin: 20px 0;
+    }
+
+    .social-links a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 1.2em;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #667eea;
+    }
+
+    /* Success Message */
+    .success-message {
+      display: none;
+      background: #4caf50;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5em;
+      }
+
+      .author-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .author-photo {
+        max-width: 250px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="book-cover-wrapper">
+        <img src="img/portada-libro-madln.jpeg" alt="Más allá de las nubes Book Cover" class="book-cover">
+      </div>
+      <div class="hero-text">
+        <h1>Más allá de las nubes</h1>
+        <p class="subtitle">Journaling es para mi como una meditación.
+          Tener un momento de silencio para conocerte y explorar lo que te gusta, es un lujo que pocos nos regalamos. Por eso, este libro es como una meditación guíada y no es nada si no lo terminas de escribir tú.</p>
+
+        <div class="email-form">
+          <h3>Próximo lanzamiento</h3>
+          <form id="preorderForm">
+            <div class="form-group">
+              <input type="text" id="name" placeholder="Nombre" required>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <button type="submit" class="submit-btn">Mantenme Informado</button>
+            <div class="success-message" id="successMessage">
+              Gracias! Te avisaremos cuándo salga a la venta!.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">About The Book</h2>
+    <div class="about-content">
+      <p>In a world where artificial intelligence is reshaping every aspect of our lives, we stand at a crossroads. The Digital Awakening explores the profound questions that arise as the boundaries between human and machine consciousness begin to blur.</p>
+
+      <p>Through compelling narratives, cutting-edge research, and philosophical inquiry, this book challenges us to reconsider what makes us fundamentally human. It's not just about the technology we create, but about who we become in the process of creating it.</p>
+
+      <p>Whether you're a technologist, philosopher, or simply curious about our collective future, this book offers a roadmap for navigating the most important transformation of our era with wisdom, compassion, and hope.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Author Section -->
+<section class="section author-section">
+  <div class="container">
+    <h2 class="section-title">Meet The Author</h2>
+    <div class="author-content">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=faces" alt="Author Photo" class="author-photo">
+      <div class="author-bio">
+        <h3>Dr. Alex Morgan</h3>
+        <p>Dr. Alex Morgan is a renowned AI researcher and philosopher who has spent two decades at the intersection of technology and human consciousness. Their work has been featured in leading journals and publications worldwide.</p>
+        <p>With a background in cognitive science and machine learning, Alex brings a unique perspective to the most pressing questions of our time, making complex ideas accessible and deeply relevant to everyday life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Early Praise</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>"A masterpiece that bridges the gap between technology and humanity. This book will change how you think about the future."</p>
+        <div class="testimonial-author">— Dr. Sarah Chen, MIT Professor</div>
+      </div>
+      <div class="testimonial">
+        <p>"Profound, accessible, and urgently relevant. Morgan has written the book we need for this moment in history."</p>
+        <div class="testimonial-author">— James Rodriguez, Tech Innovator</div>
+      </div>
+      <div class="testimonial">
+        <p>"A thought-provoking exploration that left me both hopeful and inspired about our technological future."</p>
+        <div class="testimonial-author">— Dr. Maya Patel, Philosopher</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Book Details -->
+<section class="section details">
+  <div class="container">
+    <h2 class="section-title">Book Details</h2>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <h4>Publication Date</h4>
+        <p>Fall 2026</p>
+      </div>
+      <div class="detail-item">
+        <h4>Format</h4>
+        <p>Hardcover, Paperback, eBook</p>
+      </div>
+      <div class="detail-item">
+        <h4>Pages</h4>
+        <p>352 pages</p>
+      </div>
+      <div class="detail-item">
+        <h4>Publisher</h4>
+        <p>Future Press</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>&copy; 2026 The Digital Awakening. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+    <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+      <a href="#" style="color: white;">Privacy Policy</a> |
+      <a href="#" style="color: white;">Contact</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('preorderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+
+    // Store in memory (since localStorage is not available)
+    const preorder = {
+      name: name,
+      email: email,
+      timestamp: new Date().toISOString()
+    };
+
+    console.log('Pre-order submitted:', preorder);
+
+    // Show success message
+    document.getElementById('successMessage').style.display = 'block';
+
+    // Reset form
+    this.reset();
+
+    // Hide success message after 5 seconds
+    setTimeout(() => {
+      document.getElementById('successMessage').style.display = 'none';
+    }, 5000);
+  });
+</script>
+</body>
+</html>
